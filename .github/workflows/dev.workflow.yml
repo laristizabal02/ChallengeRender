@@ -31,3 +31,11 @@ jobs:
           build: npm run build
           start: npm run start
           component: true
+        continue-on-error: false # Fail if tests fail
+
+      - name: Upload Cypress screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
